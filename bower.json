@@ -1,0 +1,22 @@
+{
+  "name": "example",
+  "author": "dawid paciorek",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.7.8"
+  },
+  "homepage": "https://github.com/Dawid24/managingSpaceTouristFlights",
+  "authors": [
+    "Dawid24 <paciorekdawidonly@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "js/lib",
+    "test",
+    "tests"
+  ]
+}
