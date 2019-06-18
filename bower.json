@@ -1,22 +1,28 @@
 {
-  "name": "example",
+  "name": "managingspacetouristflights",
   "author": "dawid paciorek",
   "license": "MIT",
   "dependencies": {
-    "angular": "^1.7.8"
+    "angular": "^1.7.8",
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
+    "fortawesome-font-awesome": "fontawesome#^5.9.0",
+    "angular-resource": "^1.7.8",
+    "angular-route": "^1.7.8",
+    "popper.js": "^1.15.0"
   },
   "homepage": "https://github.com/Dawid24/managingSpaceTouristFlights",
   "authors": [
     "Dawid24 <paciorekdawidonly@gmail.com>"
   ],
-  "description": "",
+  "description": "library of angular",
   "main": "",
   "ignore": [
-    "**/.*",
     "node_modules",
     "bower_components",
-    "js/lib",
     "test",
-    "tests"
+    "tests",
+    "**/.*",
+    "js/lib"
   ]
 }
