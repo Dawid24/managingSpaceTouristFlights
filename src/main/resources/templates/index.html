@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>Strona główna</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
@@ -101,9 +102,13 @@
             </div>
             <div style="display: -webkit-box; display: -webkit-flex; display: -moz-box; display: -ms-flexbox; display: flex; justify-content: space-between; -ms-align-items: center; align-items: center; width: 100%; padding-top: 3px; padding-bottom: 24px;">
                 <div>
-                    <a th:href="@{/register}"
+                    <a href="#" th:href="@{/register}"
                        style="font-size: 16px; color: #827ffe; line-height: 1.4;">
                         Register?
+                    </a>
+                    <a href="#" th:href="@{/secured}"
+                       style="font-size: 16px; color: #827ffe; line-height: 1.4;">
+                        Secret Page
                     </a>
                 </div>
             </div>

@@ -1,15 +1,21 @@
 package pl.paciorek.dawid.managingSpaceTouristFlights.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HomeController {
-    @GetMapping("/")
-    public String welcome(Model model) {
-        model.addAttribute("greeting", "Welcome user!");
+
+    @RequestMapping("/")
+    public String home() {
         return "index";
     }
+
+    @RequestMapping("/secured")
+    @ResponseBody
+    public String secured() {
+        return "secured page";
+    }
+
 }
