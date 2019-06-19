@@ -1,20 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-    <title>Registration form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/register.css">
 </head>
 <body>
-<h1>Registration form</h1>
+
 <form action="#" method="post" th:action="@{/register}" th:object="${user}">
-    <input th:field="*{firstName}" placeholder="First Name" /><br />
-    <input th:field="*{lastName}" placeholder="Last Name" /><br />
-    <p th:errors="*{email}">Email errors</p>
-    <input th:field="*{email}" type="email" placeholder="Email" /><br />
-    <p th:errors="*{password}">Password errors</p>
-    <input th:field="*{password}" type="password" placeholder="Password" /><br />
-    <input type="submit" value="Register" />
+
+    <h1>Sign Up</h1>
+
+    <fieldset>
+        <legend><span class="number">1</span>Your basic info</legend>
+        <label for="name">Name:</label>
+        <input th:field="*{firstName}" type="text" id="name" name="user_name">
+
+        <label for="lastname">Last Name:</label>
+        <input th:field="*{lastName}" type="text" id="lastname" name="user_lastname">
+
+        <label for="mail">Email:</label>
+        <input th:field="*{email}" type="email" id="mail" name="user_email">
+
+        <label for="password">Password:</label>
+        <input th:field="*{password}" type="password" id="password" name="user_password">
+
+        <label>Sex:</label>
+        <input type="radio" id="women" th:field="*{sex}" value="WOMEN" name="W"><label for="women" class="light">WOMEN</label><br>
+        <input type="radio" id="men" th:field="*{sex}" value="MEN" name="M"><label for="men" class="light">MEN</label>
+    </fieldset>
+
+    <fieldset>
+        <legend><span class="number">2</span>Your profile</legend>
+        <label for="notes">Notes:</label>
+        <textarea th:field="*{notes}" id="notes" name="use_notes"></textarea>
+    </fieldset>
+    <fieldset>
+        <label for="country">Country:</label>
+        <select id="country" name="country">
+            <optgroup label="Country">
+                <option th:field="*{country}" value="United States">UNITED STATES</option>
+                <option th:field="*{country}" value="France">FRANCE</option>
+                <option th:field="*{country}" value="Germany">GERMANY</option>
+                <option th:field="*{country}" value="Poland"> POLAND</option>
+                <option th:field="*{country}" value="Romania">ROMANIA</option>
+                <option th:field="*{country}" value="United Kingdom">UNITED KINGDOM</option>
+            </optgroup>
+        </select>
+        <label for="password">Date of birth:</label>
+        <input th:field="*{dateOfBirth}" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" placeholder="Input your date in format YYYY-MM-DD" type="text" id="date" name="user_email">
+
+    </fieldset>
+    <button type="submit">Sign Up</button>
 </form>
+
 </body>
 </html>

@@ -1,4 +1,5 @@
 package pl.paciorek.dawid.managingSpaceTouristFlights.model;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.paciorek.dawid.managingSpaceTouristFlights.util.Sex;
 
 import javax.persistence.*;
@@ -19,11 +20,10 @@ public class User {
     private String email;
     @NotEmpty
     private String password;
-    private Sex sex;
+    private String sex;
     private String country;
     private String notes;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateOfBirth;
+    private String dateOfBirth;
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<UserRole> roles = new HashSet<>();
 
@@ -58,11 +58,11 @@ public class User {
         this.password = password;
     }
 
-    public Sex getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Sex sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
@@ -82,11 +82,11 @@ public class User {
         this.notes = notes;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -105,7 +105,7 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", sex=" + sex +
+                ", sex='" + sex + '\'' +
                 ", country='" + country + '\'' +
                 ", notes='" + notes + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
