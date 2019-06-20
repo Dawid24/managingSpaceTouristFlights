@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Edit Tourist</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body>
+
+<form action="#" method="post" th:action="@{/add_flight}" th:object="${flight}">
+
+    <h1>Delete</h1>
+
+    <fieldset>
+        <legend><span class="number">1</span>Basic Info</legend>
+        <label for="id">Id:</label>
+        <input th:field="*{id}" type="text" id="id" name="flight_id">
+
+        <label for="dep">Departure Time:</label>
+        <input th:field="*{departure}" type="text" id="dep" name="departure_time">
+
+        <label for="arr_t">Arrival Time:</label>
+        <input th:field="*{arrival}" type="text" id="arr_t" name="arrival_time">
+
+        <label for="seats">Seats Number:</label>
+        <input th:field="*{seatsNumber}" type="text" id="seats" name="seats_number">
+
+        <label for="price">Price:</label>
+        <input th:field="*{price}" type="text" id="price" name="price_flight">
+    </fieldset>
+
+    <button type="submit">Edit Flight</button>
+</form>
+
+</body>
+</html>

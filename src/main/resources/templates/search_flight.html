@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Tourist manager</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div align="center">
+    <h1>Flight manager</h1>
+    <form action="#" method="get" th:action="@{/search_flight}">
+        <input type="text" name="keyword">
+        <input type="submit" value="Search">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>List of users:</h4>
+                    <div class="table-responsive">
+                        <table id="mytable" class="table table-bordred table-striped">
+                            <thead>
+                            <th>ID</th>
+                            <th>Departure</th>
+                            <th>Arrival</th>
+                            <th>Seat Number</th>
+                            <th>CPrice</th>
+                            <th>Action</th>
+                            </thead>
+                            <tbody>
+                            <div style="text-align: left; color: #403866" th:each="flight : ${flightsList}">
+                                <tr>
+                                    <td th:text="${flight.id}"></td>
+                                    <td th:text="${flight.departure}"></td>
+                                    <td th:text="${flight.arrival}"></td>
+                                    <td th:text="${flight.seatsNumber}"></td>
+                                    <td th:text="${flight.price}"></td>
+                                    <td>
+                                        <a th:href="'edit_f?id=' + ${flight.id}">Edit</a>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <a th:href="'delete_f?id=' + ${flight.id}">Delete</a>
+                                    </td>
+                                </tr>
+                            </div>
+                            </tbody>
+                        </table>
+                        <div style="display: -webkit-box; display: -webkit-flex; display: -moz-box; display: -ms-flexbox; display: flex; justify-content: space-between; -ms-align-items: center; align-items: center; width: 100%; padding-top: 3px; padding-bottom: 24px;">
+                            <div>
+                                <a href="#" th:href="@{/}">Go to homepage</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

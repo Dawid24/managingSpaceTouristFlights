@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body>
+<form action="#" method="post" th:action="@{/add_flight}" th:object="${flight}">
+
+    <h1>Add Flight</h1>
+
+    <fieldset>
+        <legend><span class="number">1</span>Basic Information</legend>
+        <label for="date_departure">Date & Time Of Departure:</label>
+        <input th:field="*{departure}" pattern="[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (2[0-3]|[01][0-9]):[0-5][0-9]" placeholder="Input your date in format YYYY-MM-DD HH:MM:ss" type="text" id="date_departure" name="date_departure">
+
+        <label for="date_arrival">Date & Time Of Arrival:</label>
+        <input th:field="*{arrival}" pattern="[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (2[0-3]|[01][0-9]):[0-5][0-9]" placeholder="Input your date in format YYYY-MM-DD HH:MM:ss" type="text" id="date_arrival" name="date_arrival">
+
+        <label for="seatsn">Seats Number:</label>
+        <input th:field="*{seatsNumber}" type="text" id="seatsn" name="seat">
+
+        <label for="price">Price:</label>
+        <input th:field="*{price}" type="text" id="price" name="flight_price">
+    </fieldset>
+
+    <button type="submit">Add Flight</button>
+</form>>
+</body>
+</html>
