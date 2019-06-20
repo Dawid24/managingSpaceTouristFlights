@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import pl.paciorek.dawid.managingSpaceTouristFlights.model.User;
 import pl.paciorek.dawid.managingSpaceTouristFlights.service.UserService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -37,6 +37,29 @@ public class UserController {
             userService.addWithDefaultRole(user);
             return "registerSuccess";
         }
+    }
+
+    @RequestMapping("/search")
+    public ModelAndView getTourist() {
+        ModelAndView modelAndView = new ModelAndView("search");
+        List<User> userList = userService.listAll();
+        modelAndView.addObject("userList", userList);
+        return modelAndView;
+    }
+
+    @RequestMapping("edit")
+    public ModelAndView editUserForm(@RequestParam long id) {
+        ModelAndView modelAndView = new ModelAndView("edit_tourist");
+        User user = userService.get(id);
+        modelAndView.addObject("user", user);
+        return modelAndView;
+    }
+
+    @RequestMapping("/delete")
+    public String deleteTourist(@RequestParam long id) {
+        userService.delete(id);
+
+        return "redirect:/";
     }
 
 }

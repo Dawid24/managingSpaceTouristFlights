@@ -1,14 +1,14 @@
 package pl.paciorek.dawid.managingSpaceTouristFlights.model;
-import org.springframework.format.annotation.DateTimeFormat;
-import pl.paciorek.dawid.managingSpaceTouristFlights.util.Sex;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name = "user")
 public class User {
 
     @Id
@@ -26,6 +26,12 @@ public class User {
     private String dateOfBirth;
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<UserRole> roles = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "user_flights",
+    joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+    inverseJoinColumns = {@JoinColumn(name = "flight_id", referencedColumnName = "id")})
+    private List<Flight> flightList = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -57,44 +63,46 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
     public String getSex() {
         return sex;
     }
-
     public void setSex(String sex) {
         this.sex = sex;
     }
-
     public String getCountry() {
         return country;
     }
-
     public void setCountry(String country) {
         this.country = country;
     }
-
     public String getNotes() {
         return notes;
     }
-
     public void setNotes(String notes) {
         this.notes = notes;
     }
-
     public String getDateOfBirth() {
         return dateOfBirth;
     }
-
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
     public Set<UserRole> getRoles() {
         return roles;
     }
     public void setRoles(Set<UserRole> roles) {
         this.roles = roles;
+    }
+    public List<Flight> getFlightList() {
+        return flightList;
+    }
+    public void setFlightList(List<Flight> flightList) {
+        this.flightList = flightList;
+    }
+
+    public void addFlight(Flight flight) {
+        flightList.add(flight);
+        flight.getPassengers().add(this);
     }
 
     @Override
@@ -109,9 +117,7 @@ public class User {
                 ", country='" + country + '\'' +
                 ", notes='" + notes + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
-                ", roles=" + roles +
                 '}';
     }
+
 }
-
-

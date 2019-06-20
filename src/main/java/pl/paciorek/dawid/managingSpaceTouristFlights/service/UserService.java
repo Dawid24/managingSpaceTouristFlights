@@ -8,8 +8,12 @@ import pl.paciorek.dawid.managingSpaceTouristFlights.model.UserRole;
 import pl.paciorek.dawid.managingSpaceTouristFlights.repository.UserRepository;
 import pl.paciorek.dawid.managingSpaceTouristFlights.repository.UserRoleRepository;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserService {
+
 
     private static final String DEFAULT_ROLE = "ROLE_USER";
     private UserRepository userRepository;
@@ -37,5 +41,18 @@ public class UserService {
         String passwordHash = passwordEncoder.encode(user.getPassword());
         user.setPassword(passwordHash);
         userRepository.save(user);
+    }
+
+    public List<User> listAll() {
+        return (List<User>) userRepository.findAll();
+    }
+
+    public User get(long id) {
+        Optional<User> result = userRepository.findById(id);
+        return result.get();
+    }
+
+    public void delete(long id) {
+        userRepository.deleteById(id);
     }
 }
