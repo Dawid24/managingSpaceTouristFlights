@@ -47,7 +47,7 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping("edit")
+    @RequestMapping("/edit")
     public ModelAndView editUserForm(@RequestParam long id) {
         ModelAndView modelAndView = new ModelAndView("edit_tourist");
         User user = userService.get(id);

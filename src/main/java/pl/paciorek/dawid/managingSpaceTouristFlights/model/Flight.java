@@ -87,4 +87,9 @@ public class Flight {
     public int hashCode() {
         return Objects.hash(id, departure, arrival, seatsNumber, passengers, price);
     }
+
+    public void addTourist(User user) {
+        passengers.add(user);
+        user.getFlightList().add(this);
+    }
 }

@@ -3,11 +3,14 @@ package pl.paciorek.dawid.managingSpaceTouristFlights.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.paciorek.dawid.managingSpaceTouristFlights.model.Flight;
 import pl.paciorek.dawid.managingSpaceTouristFlights.model.User;
 import pl.paciorek.dawid.managingSpaceTouristFlights.model.UserRole;
+import pl.paciorek.dawid.managingSpaceTouristFlights.repository.FlightRepository;
 import pl.paciorek.dawid.managingSpaceTouristFlights.repository.UserRepository;
 import pl.paciorek.dawid.managingSpaceTouristFlights.repository.UserRoleRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +22,9 @@ public class UserService {
     private UserRepository userRepository;
     private UserRoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    FlightRepository flightRepository;
 
     @Autowired
     public UserService(PasswordEncoder passwordEncoder) {

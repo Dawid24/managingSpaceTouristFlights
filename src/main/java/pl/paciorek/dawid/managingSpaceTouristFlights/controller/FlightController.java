@@ -48,7 +48,7 @@ public class FlightController {
         return modelAndView;
     }
 
-    @RequestMapping("edit_f")
+    @RequestMapping("/edit_f")
     public ModelAndView editFlightForm(@RequestParam long id) {
         ModelAndView modelAndView = new ModelAndView("edit_flight");
         Flight flight = flightService.get(id);

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Edit Tourist</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body>
+
+<form action="#" method="post" th:action="@{/ord}" th:object="${user}">
+
+    <h1>Order Flight</h1>
+
+    <fieldset>
+        <legend><span class="number">1</span>Your basic info</legend>
+        <label for="id">Id:</label>
+        <input th:field="*{id}" type="text" id="id" name="user_id">
+
+        <label for="na">Flight ID:</label>
+        <input th:field="*{flightList}" type="text" id="na" name="flight_id">
+
+        <!--<label for="s">Seats:</label>
+        //<input th:field="*{id}" type="text" id="s" name="seats">-->
+
+    </fieldset>
+
+    <button type="submit">Order</button>
+</form>
+
+</body>
+</html>
