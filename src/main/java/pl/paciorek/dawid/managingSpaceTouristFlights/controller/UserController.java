@@ -4,18 +4,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import pl.paciorek.dawid.managingSpaceTouristFlights.model.Flight;
 import pl.paciorek.dawid.managingSpaceTouristFlights.model.User;
+import pl.paciorek.dawid.managingSpaceTouristFlights.model.forms.AddUserItemForm;
+import pl.paciorek.dawid.managingSpaceTouristFlights.repository.FlightRepository;
+import pl.paciorek.dawid.managingSpaceTouristFlights.repository.UserRepository;
+import pl.paciorek.dawid.managingSpaceTouristFlights.service.FlightService;
 import pl.paciorek.dawid.managingSpaceTouristFlights.service.UserService;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
+//import java.util.Optional;
 
 @Controller
 public class UserController {
 
     private UserService userService;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    FlightRepository flightRepository;
+
+    @Autowired
+    FlightService flightService;
 
     @Autowired
     public void setUserService(UserService userService) {
@@ -60,6 +77,39 @@ public class UserController {
         userService.delete(id);
 
         return "redirect:/";
+    }
+
+
+
+    @RequestMapping(value = "add-item/{flightId}", method = RequestMethod.GET)
+    public String addItem(Model model, @PathVariable Long flightId) {
+        User user = userRepository.findById(flightId).get();
+        AddUserItemForm form = new AddUserItemForm(
+                flightRepository.findAll(),
+                user
+        );
+
+        List<Flight> flightss = flightService.listAll();
+        model.addAttribute("title", "Add item to menu: " + user.getFirstName());
+        model.addAttribute("form", form);
+        model.addAttribute("forms", "Forms " + form.toString());
+        model.addAttribute("flightss", flightss);
+        model.addAttribute("user", user);
+        return "add-item";
+    }
+
+    @RequestMapping(value = "add-item", method = RequestMethod.POST)
+    public String addItem(Model model, @ModelAttribute @Valid AddUserItemForm form, Errors errors) {
+        if (errors.hasErrors()) {
+            model.addAttribute("form", form);
+            return "index";
+        }
+        Flight theFlight = flightRepository.findById(form.getFlightId()).get();
+        User theUser = userRepository.findById(form.getUserId()).get();
+        theUser.addFlight(theFlight);
+        userRepository.save(theUser);
+
+        return "index";
     }
 
 }

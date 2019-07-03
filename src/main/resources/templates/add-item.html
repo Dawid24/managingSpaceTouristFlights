@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="container">
+<h2 th:text="${title}"> Default title</h2>
+<h2 th:text="${form}"></h2>
+<h2 th:object="${flightss}"></h2>
+<form method="post" th:object="${form}" action="#" th:action="@{/add-item}">
+    <div class="form-group">
+        <!--<label for="flightsss">Country:</label>
+        <select id="flightsss" name="flightsss">
+            <option th:each="flight : ${flightss}"
+            th:text="${flight.id}"></option>
+        </select>-->
+
+        <label th:for="flightId">Flight</label>
+        <select name="flightId">
+            <option th:each="flight : ${flightss}"
+                    th:text="${flight.getArrival()}"
+                    th:value="${flight.getId()}"></option>
+        </select>
+    </div>
+
+    <label th:for="userId">User</label>
+    <input th:text="${user.firstName}" name="userId" th:value="${user.id}">
+    <input type="submit" value="Add Flight">
+</form>
+
+</body>
+</html>
