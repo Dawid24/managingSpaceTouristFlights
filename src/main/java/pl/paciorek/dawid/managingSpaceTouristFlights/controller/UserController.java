@@ -84,6 +84,7 @@ public class UserController {
     @RequestMapping(value = "add-item/{flightId}", method = RequestMethod.GET)
     public String addItem(Model model, @PathVariable Long flightId) {
         User user = userRepository.findById(flightId).get();
+        Flight f1 = flightService.get(user.getId());
         AddUserItemForm form = new AddUserItemForm(
                 flightRepository.findAll(),
                 user
@@ -95,14 +96,26 @@ public class UserController {
         model.addAttribute("forms", "Forms " + form.toString());
         model.addAttribute("flightss", flightss);
         model.addAttribute("user", user);
+        model.addAttribute("f1", f1);
         return "add-item";
     }
 
     @RequestMapping(value = "add-item", method = RequestMethod.POST)
-    public String addItem(Model model, @ModelAttribute @Valid AddUserItemForm form, Errors errors) {
+    public String addItem(Model model, @ModelAttribute @Valid AddUserItemForm form,
+                          @RequestParam(value = "seats") int seats, Errors errors) {
         if (errors.hasErrors()) {
             model.addAttribute("form", form);
             return "index";
+        }
+        if (seats <= flightRepository.findById(form.getFlightId()).get().getSeatsNumber()) {
+            System.out.println("Opdate:" + seats + " " + flightRepository.findById(form.getFlightId()).get().getSeatsNumber());
+            Flight flight = flightRepository.findById(form.getFlightId()).get();
+            if (flight != null) {
+                flight.setSeatsNumber(flightRepository.findById(form.getFlightId()).get().getSeatsNumber() - seats);
+            }
+
+            System.out.println("End: " + flight.getSeatsNumber());
+
         }
         Flight theFlight = flightRepository.findById(form.getFlightId()).get();
         User theUser = userRepository.findById(form.getUserId()).get();

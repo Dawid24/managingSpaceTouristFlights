@@ -31,7 +31,7 @@ public class FlightController {
 
     @PostMapping("/add_flight")
     public String addFlight(@ModelAttribute @Valid Flight flight,
-                          BindingResult bindResult) {
+                            BindingResult bindResult) {
         if(bindResult.hasErrors())
             return "flight_form";
         else {

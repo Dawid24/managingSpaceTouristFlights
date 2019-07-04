@@ -22,10 +22,16 @@
                     th:text="${flight.getArrival()}"
                     th:value="${flight.getId()}"></option>
         </select>
+
+        <label th:for="seats">Seats</label>
+        <input th:text="${user.lastName}" name="seats" id="seats" th:value="10">
+
+        </select>
     </div>
 
     <label th:for="userId">User</label>
     <input th:text="${user.firstName}" name="userId" th:value="${user.id}">
+
     <input type="submit" value="Add Flight">
 </form>
 

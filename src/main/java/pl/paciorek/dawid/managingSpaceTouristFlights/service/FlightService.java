@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.paciorek.dawid.managingSpaceTouristFlights.model.Flight;
 import pl.paciorek.dawid.managingSpaceTouristFlights.repository.FlightRepository;
 
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,4 +36,10 @@ public class FlightService {
     public void delete(Long id) {
         flightRepository.deleteById(id);
     }
+
+    //@Transactional
+    //public void update(Flight flight) {
+       // Flight find = flightRepository.findById()
+
+    //}
 }

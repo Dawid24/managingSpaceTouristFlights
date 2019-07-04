@@ -26,8 +26,8 @@ public class User {
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "user_flights",
-    joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-    inverseJoinColumns = {@JoinColumn(name = "flight_id", referencedColumnName = "id")})
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "flight_id", referencedColumnName = "id")})
     private List<Flight> flightList = new ArrayList<>();
 
     public Long getId() {
